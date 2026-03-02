@@ -15,6 +15,6 @@ public class Program {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
     public String name;
-    @OneToMany(mappedBy = "programId")
+    @OneToMany(mappedBy = "program")
     public List<Student> students;
 }

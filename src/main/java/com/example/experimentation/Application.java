@@ -22,11 +22,11 @@ public class Application implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        Program newProgr = new Program();
-//        newProgr.name = "prog"; 
-//        progRep.save(newProgr);
-//        System.out.println("arrived to save the student");
-        Program prog = progRep.findById(1).get();
+        Program newProgr = new Program();
+        newProgr.name = "prog"; 
+        progRep.save(newProgr);
+        System.out.println("arrived to save the student");
+        //Program prog = progRep.findById(1).get();
         
         Student stud = new Student();
         stud.name = "Student";
@@ -34,7 +34,7 @@ public class Application implements ApplicationRunner{
         System.out.println("arrived to save the student");
         
         Student studFromRep = studRep.findById(1).get();
-        studFromRep.programId = 1;
+        studFromRep.program = newProgr;
         
         studRep.save(studFromRep);
         
