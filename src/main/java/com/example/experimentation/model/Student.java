@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Student {
@@ -16,5 +17,10 @@ public class Student {
     public String name;
     @ManyToOne
     @JoinColumn(name = "program_id", nullable = true)
-    public Integer programId;
+    public Program program;
+    
+    @OneToOne
+    private Address address;
+    
+    
 }

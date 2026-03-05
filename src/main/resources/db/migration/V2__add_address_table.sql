@@ -1,0 +1,6 @@
+CREATE TABLE address (
+id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+country VARCHAR
+);
+
+ALTER TABLE student ADD COLUMN address_id REFERENCES address(id);
