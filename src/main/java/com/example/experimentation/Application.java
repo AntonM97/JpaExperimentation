@@ -1,11 +1,16 @@
 package com.example.experimentation;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.experimentation.model.Address;
 import com.example.experimentation.model.Program;
 import com.example.experimentation.model.Student;
+import com.example.experimentation.repository.AddressRepository;
 import com.example.experimentation.repository.ProgramRepository;
 import com.example.experimentation.repository.StudentRepository;
 
@@ -14,31 +19,41 @@ public class Application implements ApplicationRunner{
     
     private ProgramRepository progRep;
     private StudentRepository studRep;
+    private AddressRepository addRep;
     
-    public Application(ProgramRepository progRep, StudentRepository studRep) {
+    public Application(ProgramRepository progRep, StudentRepository studRep, AddressRepository addRep) {
         this.progRep = progRep;
         this.studRep = studRep;
+        this.addRep = addRep;
     }
 
     @Override
+    @Transactional
     public void run(ApplicationArguments args) throws Exception {
-//        Program newProgr = new Program();
-//        newProgr.name = "prog"; 
-//        progRep.save(newProgr);
-//        System.out.println("arrived to save the student");
-        Program prog = progRep.findById(1).get();
+        int runNum = 1;
         
-        Student stud = new Student();
-        stud.name = "Student";
-        studRep.save(stud);
-        System.out.println("arrived to save the student");
+        Program program = new Program();
+        program.setName("TestProgram" + runNum);
+        progRep.save(program);
+        System.out.println("program saved");
         
-        Student studFromRep = studRep.findById(1).get();
-        studFromRep.programId = 1;
+        Student student = new Student();
+        student.setName("TestStduent" + runNum);
+        student.setProgram(program);
+        studRep.save(student);
+        System.out.println("student saved");
         
-        studRep.save(studFromRep);
+        program.setStudents(new ArrayList<>());
+        program.getStudents().add(student);
+        System.out.println("program added to studet");
         
-        System.out.println("finished");
+        Address address = new Address();
+        address.setCountry("Country"+runNum);
+        addRep.save(address);
+        System.out.println("address saved");
+        
+        student.setAddress(address);
+        System.out.println("address set");
     }
 
 }

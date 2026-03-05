@@ -13,14 +13,51 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer id;
-    public String name;
-    @ManyToOne
-    @JoinColumn(name = "program_id", nullable = true)
-    public Program program;
-    
+    private Integer id;
+    private String name;
+    @ManyToOne(optional = true)
+    private Program program;
     @OneToOne
     private Address address;
+
+    
+    
+    
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Program getProgram() {
+        return program;
+    }
+
+    public void setProgram(Program program) {
+        this.program = program;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
+    
+    
     
     
 }

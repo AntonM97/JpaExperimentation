@@ -3,4 +3,5 @@ id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 country VARCHAR
 );
 
-ALTER TABLE student ADD COLUMN address_id REFERENCES address(id);
+ALTER TABLE student ADD COLUMN address_id INT;
+ALTER TABLE student ADD CONSTRAINT student_address FOREIGN KEY (address_id) REFERENCES address(id);
