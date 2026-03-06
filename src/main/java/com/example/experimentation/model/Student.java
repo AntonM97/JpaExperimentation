@@ -1,6 +1,7 @@
 package com.example.experimentation.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,10 +21,6 @@ public class Student {
     @OneToOne
     private Address address;
 
-    
-    
-    
-    
     public Integer getId() {
         return id;
     }
@@ -55,9 +52,4 @@ public class Student {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-    
-    
-    
 }

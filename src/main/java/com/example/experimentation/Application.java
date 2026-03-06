@@ -55,5 +55,4 @@ public class Application implements ApplicationRunner{
         student.setAddress(address);
         System.out.println("address set");
     }
-
 }
